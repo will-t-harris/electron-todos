@@ -29,9 +29,6 @@
 		"release": "yarn react-build && electron-guilder --publish=always",
 		"build": "yarn react-build && yarn electron-build"
 	},
-	"eslintConfig": {
-		"extends": "react-app"
-	},
 	"browserslist": {
 		"production": [
 			">0.2%",
