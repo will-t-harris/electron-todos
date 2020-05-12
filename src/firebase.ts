@@ -2,7 +2,7 @@ import firebase from "firebase/app";
 import "firebase/firestore";
 
 const firebaseConfig = firebase.initializeApp({
-	apiKey: "AIzaSyDXmSM2KzAAAqJi-pbMsLOtwfjH7MhEC2U",
+	apiKey: "AIzaSyC_jHC7n-kOGgjqrrXX8IbqaqMKnd78C3k",
 	authDomain: "electron-todos.firebaseapp.com",
 	databaseURL: "https://electron-todos.firebaseio.com",
 	projectId: "electron-todos",
@@ -12,3 +12,4 @@ const firebaseConfig = firebase.initializeApp({
 });
 
 export { firebaseConfig as firebase };
+fffff;
