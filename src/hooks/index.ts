@@ -1,34 +1,43 @@
 import { useState, useEffect } from "react";
 import moment from "moment";
 
-import firebase from "../firebase";
+import { firebase } from "../firebase";
 import { collatedTasksExist } from "../helpers";
 
-export const useTasks = (selectedProject) => {
+import { TaskInterface } from "../components/Tasks";
+
+interface ProjectInterface {
+	projectId: string;
+	projectName: string;
+	userId: string;
+	docId: string;
+}
+
+export const useTasks = (selectedProject: string) => {
 	const [tasks, setTasks] = useState([]);
 	const [archivedTasks, setArchivedTasks] = useState([]);
 
 	useEffect(() => {
-		let unsubscribe = firebase
+		let unsubscribe: any = firebase
 			.firestore()
 			.collection("tasks")
-			.where("userId", "===", "cd22409c-7a08-4def-a5e6-705b0fca741e");
+			.where("userId", "==", "cd22409c-7a08-4def-a5e6-705b0fca741e");
 
 		unsubscribe =
 			selectedProject && !collatedTasksExist(selectedProject)
-				? (unsubscribe = unsubscribe.where("projectId", "===", selectedProject))
+				? (unsubscribe = unsubscribe.where("projectId", "==", selectedProject))
 				: selectedProject === "TODAY"
 				? (unsubscribe = unsubscribe.where(
 						"date",
-						"===",
+						"==",
 						moment().format("DD/MM/YYYY")
 				  ))
-				: selectedProject === "INBOX" || selectedProject === 0
-				? (unsubscribe = unsubscribe.where("data", "===", ""))
+				: selectedProject === "INBOX" || selectedProject === "0"
+				? (unsubscribe = unsubscribe.where("data", "==", ""))
 				: unsubscribe;
 
-		unsubscribe = unsubscribe.onSnapshot((snapshot) => {
-			const newTasks = snapshot.docs.map((task) => ({
+		unsubscribe = unsubscribe.onSnapshot((snapshot: any) => {
+			const newTasks = snapshot.docs.map((task: TaskInterface) => ({
 				id: task.id,
 				...task.data(),
 			}));
@@ -36,14 +45,16 @@ export const useTasks = (selectedProject) => {
 			setTasks(
 				selectedProject === "NEXT_7"
 					? newTasks.filter(
-							(task) =>
+							(task: TaskInterface) =>
 								moment(task.date, "DD-MM-YYYY").diff(moment(), "days") <= 7 &&
 								task.archived !== true
 					  )
-					: newTasks.filter((task) => task.archived !== true)
+					: newTasks.filter((task: TaskInterface) => task.archived !== true)
 			);
 
-			setArchivedTasks(newTasks.filter((task) => task.archived === true));
+			setArchivedTasks(
+				newTasks.filter((task: TaskInterface) => task.archived === true)
+			);
 		});
 
 		return () => unsubscribe();
@@ -53,13 +64,15 @@ export const useTasks = (selectedProject) => {
 };
 
 export const useProjects = () => {
-	const [projects, setProjects] = useState([]);
+	const [projects, setProjects] = useState<
+		ProjectInterface | { docId: string }[]
+	>();
 
 	useEffect(() => {
 		firebase
 			.firestore()
 			.collection("projects")
-			.where("userId", "===", "cd22409c-7a08-4def-a5e6-705b0fca741e")
+			.where("userId", "==", "cd22409c-7a08-4def-a5e6-705b0fca741e")
 			.orderBy("projectId")
 			.get()
 			.then((snapshot) => {
