@@ -12,7 +12,7 @@ export const Checkbox = ({ id }: Props) => {
 	};
 	return (
 		<div onClick={() => archiveTask()}>
-			<span></span>
+			<span>{id}</span>
 		</div>
 	);
 };
