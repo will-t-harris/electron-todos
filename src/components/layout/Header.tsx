@@ -1,5 +1,5 @@
 import React from "react";
-import { FaPizzaSlice } from "react-icons/fa";
+import { FaMoon } from "react-icons/fa";
 
 export const Header = () => {
 	return (
@@ -14,7 +14,7 @@ export const Header = () => {
 							+
 						</li>
 						<li className="text-white flex float-left justify-center items-center text-center align-middle cursor-pointer w-8 h-8 list-none hover-radius hover:bg-opacity-25 hover:bg-white">
-							<FaPizzaSlice className="w-6 h-6" />
+							<FaMoon className="w-6 h-6" />
 						</li>
 					</ul>
 				</div>
