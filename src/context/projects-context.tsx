@@ -9,9 +9,7 @@ interface Props {
 
 export const ProjectsProvider = ({ children }: Props) => {
 	const { projects, setProjects } = useProjects();
-	if (projects === undefined) {
-		return;
-	}
+
 	return (
 		<ProjectsContext.Provider value={{ projects, setProjects }}>
 			{children}
