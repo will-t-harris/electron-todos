@@ -17,6 +17,7 @@
 		"react": "^16.13.1",
 		"react-dom": "^16.13.1",
 		"react-scripts": "3.4.1",
+		"shortid": "^2.2.15",
 		"typescript": "~3.7.2"
 	},
 	"scripts": {
@@ -24,10 +25,11 @@
 		"react-build": "react-scripts build",
 		"react-test": "react-scripts test",
 		"react-eject": "react-scripts eject",
-		"dev": "concurrently \"BROWSER=none yarn react-start\" \"wait-on http://localhost:3000 && electron .\"",
+		"dev": "npm run tailwind:css && concurrently \"BROWSER=none yarn react-start\" \"wait-on http://localhost:3000 && electron .\"",
 		"electron-build": "electron-builder",
 		"release": "yarn react-build && electron-guilder --publish=always",
-		"build": "yarn react-build && yarn electron-build"
+		"build": "npm run tailwind:css && yarn react-build && yarn electron-build",
+		"tailwind:css": "tailwind build src/tailwind.css -c tailwind.config.js -o src/index.css"
 	},
 	"eslintConfig": {
 		"extends": "react-app"
@@ -45,9 +47,11 @@
 		]
 	},
 	"devDependencies": {
+		"@types/shortid": "^0.0.29",
 		"concurrently": "^5.2.0",
 		"electron": "^8.2.5",
 		"electron-builder": "^22.6.0",
+		"tailwindcss": "^1.4.6",
 		"wait-on": "^4.0.2"
 	}
 }
