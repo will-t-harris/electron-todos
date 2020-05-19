@@ -1,8 +1,0 @@
-@tailwind base;
-@tailwind components;
-
-.hover-radius:hover {
-	border-radius: 3px;
-}
-
-@tailwind utilities;
