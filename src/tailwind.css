@@ -1,3 +1,8 @@
 @tailwind base;
+
+.input-border-transition {
+	transition: 0.25s border ease-in-out;
+}
+
 @tailwind components;
 @tailwind utilities;

@@ -28,13 +28,14 @@ const TodoForm = (props: TodoFormInterface) => {
 	};
 
 	return (
-		<div className="todo-form">
+		<div>
 			<input
 				ref={inputRef}
 				type="text"
 				placeholder="Enter new todo"
 				onChange={(event) => handleInputChange(event)}
 				onKeyPress={(event) => handleInputEnter(event)}
+				className="py-0 px-4 w-full h-12 focus:border focus:border-blue-400"
 			/>
 		</div>
 	);

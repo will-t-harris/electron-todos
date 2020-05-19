@@ -51,6 +51,7 @@
 		"concurrently": "^5.2.0",
 		"electron": "^8.2.5",
 		"electron-builder": "^22.6.0",
+		"electron-devtools-installer": "^3.0.0",
 		"tailwindcss": "^1.4.6",
 		"wait-on": "^4.0.2"
 	}

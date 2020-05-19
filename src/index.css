@@ -591,6 +591,10 @@ video {
   height: auto;
 }
 
+.input-border-transition {
+  transition: 0.25s border ease-in-out;
+}
+
 .container {
   width: 100%;
 }
