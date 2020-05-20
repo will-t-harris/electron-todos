@@ -1,9 +1,9 @@
 import { client, q } from "../config/db";
 
-const deleteNote = (noteRef: string) =>
+const deleteTodo = (todoRef: string) =>
 	client
-		.query(q.Delete(q.Ref(q.Collection("todos"), noteRef)))
+		.query(q.Delete(q.Ref(q.Collection("todos"), todoRef)))
 		.then((response) => response)
 		.catch((error) => console.warn(error));
 
-export default deleteNote;
+export default deleteTodo;
