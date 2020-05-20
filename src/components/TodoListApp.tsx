@@ -62,7 +62,7 @@ const TodoListApp = () => {
 	};
 
 	return (
-		<div className="flex flex-col flex-no-wrap pt-8 max-w-lg">
+		<div className="flex flex-col flex-no-wrap pt-8 min-h-screen bg-gray-200">
 			<TodoForm todos={todos} handleTodoCreate={handleTodoCreate} />
 			<TodoList
 				todos={todos}
