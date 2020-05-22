@@ -1,7 +1,7 @@
 import { client, q } from "../config/db";
 
 const getAllTodos = client
-	.query(q.Paginate(q.Match(q.Ref("indexes/all_todos"))))
+	.query(q.Paginate(q.Match(q.Ref("indexes/allTodos"))))
 	.then((response: any) => {
 		const todosRefs = response.data;
 
