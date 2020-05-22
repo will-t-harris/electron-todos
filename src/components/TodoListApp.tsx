@@ -1,4 +1,5 @@
-import React, { useState, ChangeEvent } from "react";
+import React, { useState, useEffect, ChangeEvent } from "react";
+import { getAllTodos, deleteTodo, editTodo, createTodo } from "../api";
 
 import TodoForm from "./TodoForm";
 import TodoList from "./TodoList";
@@ -9,6 +10,13 @@ import "../index.css";
 
 const TodoListApp = () => {
 	const [todos, setTodos] = useState<TodoInterface[]>([]);
+	const [newTodos, setNewTodos] = useState([]);
+
+	useEffect(() => {
+		getAllTodos.then((response) => setNewTodos(response));
+	}, []);
+
+	console.log(newTodos);
 
 	const handleTodoCreate = (todo: TodoInterface) => {
 		const newTodosState: TodoInterface[] = [...todos];
